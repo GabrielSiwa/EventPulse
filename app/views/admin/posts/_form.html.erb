@@ -1,0 +1,34 @@
+<div class="max-w-3xl mx-auto bg-white p-6 rounded shadow">
+    <%= form_with(model: [:admin, @post]) do |f| %>
+    <% if @post.errors.any? %>
+    <div class="mb-4 text-red-600">
+        <p><strong><%= pluralize(@post.errors.count, "error") %> prevented saving:</strong></p>
+        <ul class="list-disc ml-5">
+            <% @post.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+    <% end %>
+
+    <div class="mb-4">
+        <%= f.label :title, class: "block font-medium" %>
+        <%= f.text_field :title, class: "mt-1 block w-full border rounded px-3 py-2" %>
+    </div>
+
+    <div class="mb-4">
+        <%= f.label :url, class: "block font-medium" %>
+        <%= f.text_field :url, class: "mt-1 block w-full border rounded px-3 py-2" %>
+    </div>
+
+    <div class="mb-4">
+        <%= f.label :body, class: "block font-medium" %>
+        <%= f.text_area :body, rows: 8, class: "mt-1 block w-full border rounded px-3 py-2" %>
+    </div>
+
+    <div class="flex gap-3">
+        <%= f.submit class: "bg-indigo-600 text-white px-4 py-2 rounded" %>
+        <%= link_to "Cancel", admin_posts_path, class: "inline-flex items-center px-4 py-2 border rounded" %>
+    </div>
+    <% end %>
+</div>

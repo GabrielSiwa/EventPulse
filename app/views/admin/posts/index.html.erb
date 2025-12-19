@@ -1,0 +1,35 @@
+<div class="max-w-5xl mx-auto py-8">
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold">Admin — Posts</h1>
+        <div class="flex items-center gap-3">
+            <%= link_to "New Post", new_admin_post_path, class: "bg-indigo-600 text-white px-4 py-2 rounded" %>
+            <%= link_to "Back to Site", root_path, class: "inline-flex items-center px-3 py-2 border rounded" %>
+        </div>
+    </div>
+
+    <div class="bg-white shadow rounded overflow-hidden">
+        <table class="w-full text-left">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="px-4 py-3">Title</th>
+                    <th class="px-4 py-3">Published</th>
+                    <th class="px-4 py-3">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @posts.each do |post| %>
+                <tr class="border-t">
+                    <td class="px-4 py-3">
+                        <%= link_to post.title, admin_post_path(post), class: "font-medium text-indigo-600" %>
+                    </td>
+                    <td class="px-4 py-3"><%= post.published_at ? time_ago_in_words(post.published_at) + ' ago' : '—' %></td>
+                    <td class="px-4 py-3">
+                        <%= link_to "Edit", edit_admin_post_path(post), class: "text-sm text-gray-700 mr-3" %>
+                        <%= link_to "Delete", admin_post_path(post), method: :delete, data: { confirm: "Are you sure?" }, class: "text-sm text-red-600" %>
+                    </td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>

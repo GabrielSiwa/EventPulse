@@ -1,0 +1,16 @@
+<div class="max-w-3xl mx-auto py-8">
+    <div class="flex justify-between items-start mb-6">
+        <div>
+            <h1 class="text-3xl font-bold"><%= @post.title %></h1>
+            <p class="text-sm text-gray-500 mt-1"><%= @post.published_at || 'Unpublished' %></p>
+        </div>
+        <div class="flex gap-3">
+            <%= link_to "Edit", edit_admin_post_path(@post), class: "px-3 py-2 border rounded" %>
+            <%= link_to "Back", admin_posts_path, class: "px-3 py-2 border rounded" %>
+        </div>
+    </div>
+
+    <div class="prose max-w-full bg-white p-6 rounded shadow">
+        <%= raw @post.body %>
+    </div>
+</div>
